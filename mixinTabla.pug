@@ -1,0 +1,225 @@
+//-Los siguientes mixins permiten crear distintos tipos de tablas.
+   TODO: "Agregar las clases o id que se requieran para mejorar el estilo de las tablas"
+
+
+//-Arreglo de prueba: "cambialo por los datos que quieras de la tabla."
+//-Un areglo para cada parte de la tabla con el fin de tener mayor legibilidad del código.
+-let datosP = ["uno", "dos", "tres", "cuatro", "cinco"];
+- let titulos = ["titulo1", "titulo2", "titulo3", "titulo4", "titulo5"];
+- let cuerpo = ["cuerpo1", "cuerpo2", "cuerpo3", "cuerpo4", "cuerpo5"];
+- let pies = ["pies1", "pies2", "pies3", "pies4", "pies5"];
+
+- let l = titulos.length + 1
+
+
+
+
+
+
+
+
+
+
+
+
+//-mixin para creación de data (celda) "TD SOLAMENTE".
+
+mixin data(dato)
+   tr
+      td dado
+
+//-+data("valor")   ----> llamada al mixin
+
+
+
+
+
+
+
+//-mixin para creación de data dinámica por array "TD SOLAMENTE".
+
+
+mixin dataD(...datos)
+   tr
+      for i in datos
+         td= i
+
+
+
+//-+dataD(...datosP)   ----> llamada al mixin
+
+
+
+
+
+
+
+
+//-Tabla básica:
+mixin basica(data1, data2, nombre, data3="soy el tres")
+   table
+      caption= nombre
+      tr
+         td= data1
+         td= data2
+         td= data3
+
+
+//-Igual se le pueden pasar parametros por defecto +basica("dat1", "data2").    --->llamada al mixin
+
+
+
+
+
+
+
+
+mixin titulo(nombre, apellidos, nombre , no= 10)
+   table
+      caption= nombre
+      tr
+         td= no
+         td= nombre
+         td= apellidos
+
+//-+titulo("Oliver", "Atton", "Pruebas")   ----> llamada al mixin
+
+
+
+
+
+
+
+
+
+//-Tabla completa: "cabecera, cuerpo y pie" "SIN DATOS".
+
+mixin completa(nombre)
+   table
+      caption= nombre
+      thead
+      tfoot
+      tbody
+
+
+//-+completa("Pruebas")    ----> llamada al mixin
+//-Tabla completa: "cabecera, cuerpo y pie" "SIN DATOS".
+
+
+
+
+
+
+
+
+
+//-mixin para pasar una arreglo de datos variable y construir una "CABECERA".
+
+mixin cabecera(...titulos)
+   thead
+      tr
+         each val in titulos
+            th= val
+
+
+//-+cabecera(...titulos)     ----> llamada al mixin
+
+
+
+
+
+
+
+mixin pie(...pies)
+   tfoot
+      +dataD(...datosP)
+
+
+
+//-+pie(...pies)     ----> llamada al mixin
+
+
+
+
+
+
+
+
+
+
+
+//-mixin para la construcción de un tabla con cabecera, pie y cuerpo básico.
+
+mixin completaUno(nombre)
+   table
+      caption= nombre
+      +cabecera(...titulos)
+      tfoot
+         +dataD(...datosP)
+      tbody
+         +dataD(...datosP)
+
+//-+completaUno()    ---->llamada al mixin
+
+
+
+
+
+
+
+
+
+
+//-mixin para la creación de una tabla con cabecera, cuerpo y pie "BÁSICO".
+
+mixin completaDos(nombre)
+   table
+      caption= nombre
+      +cabecera(...titulos)
+      tfoot
+         +dataD(...pies)
+      tbody
+         +dataD(...cuerpo)
+
+//-+completaDos("Nombre de la tabla")    ---->llamada al mixin
+
+
+
+
+
+
+
+//- "l": Es el tamaño que tendra el cuerpo.
+mixin completaTres(l, nombre)
+   table
+      caption= nombre
+      +cabecera(...titulos)
+      tfoot
+         +dataD(...pies)
+      tbody
+         - for(let i = 0; i < l; i++)
+            +dataD(...cuerpo)
+
+//-+completaTres(2, "Mi titulo")
+
+
+
+//- Los atributos de las tablas son los siguientes:
+
+   caption ---> Es una etiqueta "NOMBRAR LA TABLA" despues de abrir la tabla e.g
+
+   caption 'Nombre de nuestra tabla '
+
+   coulgroup ---> Es una etiqueta y se encarga de la agreupacion de las columnas de la tabla.
+                  Los estilos de las columnas se pasan como atributos de en etiquetas "col"
+
+   col ----->  Es una etiqueta y se anida en la etiqueta colgroup sirve para establecer los estilos
+
+   span ---> Es un atributo del la etiqueta 'col' y delimita cuantas columnas  de la tabla abarca.
+   e.g.
+
+   col(style="background: yellow" span="3") ---> abarca 3 de columnas de la tabla
+
+      La convinación de filas y columnas sólo puede aplicarse a las etiquetas th y td
+      rowspan --->  Convina varias filas.
+      colspan --->  Convina varias columnas.
