@@ -1,0 +1,73 @@
+//- Imagen con descripcion
+   TODO : mixin para galeria de imagenes. ;)
+
+
+
+//- Quiero aclarar que figure y figcaption tambien hacen imagenes responsivas,
+   con diferencia de picture que ademas brinda el oder cambiar las imagenes.
+mixin imgDescription(leyenda, ruta, alt)
+   figure
+      img(src=`${ruta}` alt=`${alt}`)
+      figcaption= leyenda
+
+
+//- +imgDescription("Porgramando...", "circulo.jpg", "texto alternativo")
+
+   TODO : Poner lo siguiente ne arreglos para tener imagenes responsive
+   *media ---> Para los tamaños de las imagenes.
+   *rutas ---> Para la carpte de las imagenes.
+   *srcset ---> Las imagenes que va tomando conforme a la resolución.
+   *imagenes ---> las imagenes que se quieran en el picture.
+
+//- NOTE : Lo que pasa es que el hacer un case para dar los srcset no tiene
+   sentido pues de eso se encarga el navegador. es por eso que mejor lo meto en
+   un for y de ahí lo voy iterando para que cubra con todas las resoluciones antes de llegar a la img.
+
+- let resolutios = ['480px','600px','1000px', '1200px'];
+ //- Cada srcset esta asociado a una imagen ya que una imagen puede tener muchas resoluciones.
+
+- let srcset = ['niña6.jpg', 'niña1.jpg', 'niña12.jpg'];
+- let srcset1 = ['perro6.jpg', 'perro1.jpg', 'perro12.jpg'];
+- let srcset2 = ['deportista6.jpg', 'deportista1.jpg', 'deportista12.jpg'];
+- let srcset3 = ['programador6.jpg', 'programador1.jpg', 'programador12.jpg'];
+- let long = srcset.length
+
+- let media = ['600px', '1000px', '1200px'];
+- let ruta = './folder1/subforder1/'
+//-NOTE: Las imagenes y los alternos se pueden pasar como arreglos o se pueden pasar como variable, depende de lo que se quiera hacer.
+- let imagenes = ['niña.jpg', 'perro.jpg', 'deportista.jpg', 'programador.jpg'];
+- let alterns = ['Niña jugando', 'perro ladrando', 'Messi el mejor jugador de futboll de todo el mundo', 'Kevin Mitnick el Hacker más peligroso de todo el mundo'];
+
+
+//-imgagenes independientes:
+
+- let img = 'niña.jpg'
+- let img2 = 'perro.jpg'
+- let img3 = 'deportista.jpg'
+- let img4 = 'programador.jpg'
+
+
+
+//-alterns
+- let alt = 'Niña jugando'
+- let alt2 = 'perro ladrando'
+- let alt3 = 'Messi el mejor jugador de futboll de todo el mundo'
+- let alt4 = 'Kevin Mitnick el Hacker más peligroso de todo el mundo'
+
+
+
+
+//-puedes pasarme imagenes: Que entenderia que es una arreglo con todas las img
+   o puedes pasarme una 'img' que concatenare a el src, "lo mismo para el 'alt', siendo este una variable,
+   o 'alterns' para el arreglo con todas las medias.
+
+
+
+mixin responsive(srset, ruta, img, alt)
+   picture
+      -for(let i = 0; i<long; i++)
+         srcset(srcset=`${srcset[i]}` media=`(min-width: ${media[i]})`)
+      img(src=`${ruta}${img}` alt=`${alt}`)
+
+
++responsive(srcset, ruta, img, alt)
