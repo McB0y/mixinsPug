@@ -1,0 +1,43 @@
+//-
+    Declaración de variables:
+    - var title = "el contenido de la variable"
+    para asignar el contenido de una variable
+    a una etiqueta se haria de la siguiente manera:
+    h1= title h1 | tendria el valor de la variable
+
+    Interpolación de variables: 
+    La interpolación de variables nos permite 
+    embebir cierto de una variable contenido en 
+    una expresión utilizando #{var}, y lo mejor
+    se puede utilizar cualquier expresión de JS
+    valida como la siguiente:
+
+    - var msg = "not my inside voice";
+    p This is #{msg.toUpperCase()}
+
+    de esta manera también se pueden almacernar 
+    valores sin escape en las templates 
+    !{var}, pero ten en cuenta que es un poco más arriesgado.
+
+    Interpolación de tags:
+    Podemos interpolar el contenido de una etiqueta lo
+    cual es genial por ejemplo:
+
+    #[em ignored] = <em>ignored</em>
+    #[q(lang="es") ¡Hola Mundo!] = <q lang="es">¡Hola Mundo!</q>
+
+    White Sapces:
+    p
+        | Esto le indicara al engine que lo que 
+        esta despues de la etiqueta es un parrafo 
+        no una etiqueta.
+
+    TODA EXPRESION DE JS ES VALIDA!!! :)
+
+    - var authenticated = true
+    body(class=authenticated ? 'authed' : 'anon')
+    Produce la siguiente salida, ya que es true.
+    <body class="authed"></body>
+
+
+    
