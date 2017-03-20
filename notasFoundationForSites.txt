@@ -75,3 +75,20 @@ Notas personales de foundation for sites 6.3:
 
 9.-Se puede customizar todo componente, ya que cada uno depende de veriables, si estas
    no te convencen, puede editar las propias.
+
+
+10.-Todos los plugins tienen un nombre bastante identificable, pero todos estan concatenados
+    en un unico archivo llamado : foundation.js
+    un ejemplo del sitio oficial de como llamar a los plugins :
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/foundation.core.js"></script>
+    <script src="js/foundation.util.mediaQuery.js"></script>
+    <script src="js/foundation.tabs.js"></script>
+    <script src="js/foundation.accordion.js"></script>
+
+    "ESTO SERIA EL COLMO, YA QUE ALENTARIAS LA RED, POR ESO DEBERIAS CONCATENAR."
+
+11.- Los plugins estan atados por atributos data-nombre-del-plug, pero solo se puede
+    usar uno a la vez.
