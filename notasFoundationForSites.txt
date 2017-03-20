@@ -1,0 +1,77 @@
+Notas personales de foundation for sites 6.3:
+
+1.- Hay que habilitar las variables que permiten el uso de flex-box
+2.- Hay que deshabilitar las funciones del grid.
+3.- Nunca tocar los archivos que dependarn de bower.
+4.- Usando la versión para sass cree un archivo _custom.scss y lo importe en el .app
+5.- La parte de flex puede llagar a ser un poco confusa asi que aquí una "super ref".
+
+<!--Clases del contenedor padre de flex:
+  1.-  flex-container: crea el contexto de caja flexible.
+  2.-  flex-dir-row: y a que foundation es m.f, es la direccion que se aplica en
+       modo "smart" pero si quieres cambiar la dirección en solo agrega medim- o large
+
+  3.- .align-right
+      .align-center
+      .align-justify
+      .align-spaced : Estas clases son aplicadas a los contenedores padre,
+      para linear las cajas hijas.
+
+  3.a.- .align-top
+        .align-middle
+        .align-bottom
+        .align-stretch: alinean en el eje vertical.
+
+  4.-Deberias de decirle el largo que va a ocuparde del row o flex-container
+
+**  Las calases para los contenedores hijos: **
+
+  5.-.align-self-top
+     .align-self-middle
+     .align-self-bottom
+     .align-self-stretch
+
+
+  **Por ultimo los helpers de flex en foundation son **:
+
+  a).- Para voler a un contenedor una caja flexible, basta con aplicar lo siguiente:
+      .flex-container
+
+  b).-
+      Para poder cambiar la dirección:
+
+      .flex-dir-row (default)
+      .flex-dir-row-reverse
+      .flex-dir-column
+      .flex-dir-column-reverse
+  c).-
+
+  Para los hijos hay los siguientes atajos:
+
+  .flex-child-auto (auto size flex child)
+  .flex-child-grow (flex child that will grow to take up all possible space)
+  flex-child-shrink (flex child that will shrink to minimum possible space)
+
+
+
+  Pero lo mas genial diria yo son los @mixin, son los siguientes:
+
+    @include flex-direction($direction): La dirección que toma el contenedor
+    @include flex-align($x: center, $y: stretch) : alinea los elementos de la caja.
+    @include flex-align-self(bottom) : Alinea a los hijos en el el row-axis.
+    @include flex :  Habilita flex agregando display: flex al elemento.
+    @include flex-order($order) : agrega el orden de los elementos
+
+
+    checa más en la liga:
+    http://foundation.zurb.com/sites/docs/flexbox.html
+-->
+
+6.- Se recomienda una versión minima de --> node-sass 3.4.2+ (libsass 3.3.2)
+7.- La instalación se hace con un cliente cli pero ----> npm install foundation-sites --save
+8.-"HAY FORMAS PARA NO TRAERTE TODO EL CODIGO, SOLO LO NECESARIO, LAS MAS IMPORTANTE
+    PODRIA SER COMENTAR LO QUE NO SE UTILICE EN EN ARCHIVO app.scss PERO SI NECESITAS
+    DE TODO SOLO NECESITAS UNA LINEA : @include foundation-everything; en este archivo."
+
+9.-Se puede customizar todo componente, ya que cada uno depende de veriables, si estas
+   no te convencen, puede editar las propias.
