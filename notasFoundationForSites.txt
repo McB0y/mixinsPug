@@ -92,3 +92,10 @@ Notas personales de foundation for sites 6.3:
 
 11.- Los plugins estan atados por atributos data-nombre-del-plug, pero solo se puede
     usar uno a la vez.
+
+
+
+
+
+
+12.-
